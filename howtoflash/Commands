@@ -1,0 +1,11 @@
+Copy applet-flash-samd51j18a.bin and mdloader_window.exe to qmk_firmware root.
+
+
+Navigate to root of qmk_firmware folder and run the command MSYS2 to build:
+make massdrop/ctrl:default
+
+Navigate to root of qmk_firmware folder and run the command in command prompt:
+mdloader_windows.exe --first --download massdrop_ctrl_default.bin --restart
+
+make massdrop_custom/ctrl:default_custom
+mdloader_windows.exe --first --download massdrop_custom_ctrl_default_custom.bin --restart
