@@ -6,10 +6,20 @@ RGB_MATRIX_EFFECT(ALPHAS_MODS)
 bool ALPHAS_MODS(effect_params_t* params) {
   RGB_MATRIX_USE_LIMITS(led_min, led_max);
 
-  HSV hsv = { rgb_matrix_config.hue, rgb_matrix_config.sat, rgb_matrix_config.val };
+
+//Original
+//   HSV hsv = { rgb_matrix_config.hue, rgb_matrix_config.sat, rgb_matrix_config.val };
+//   RGB rgb1 = hsv_to_rgb(hsv);
+//   hsv.h += rgb_matrix_config.speed;
+//   RGB rgb2 = hsv_to_rgb(hsv);
+
+//Modified
+//0-255 for hsv
+  HSV hsv = { 128, 255, 255};
   RGB rgb1 = hsv_to_rgb(hsv);
-  hsv.h += rgb_matrix_config.speed;
+  hsv.h += ((0.6*hsv.h) + (rgb_matrix_config.speed - 8)) + rgb_matrix_config.speed;
   RGB rgb2 = hsv_to_rgb(hsv);
+
 
   for (uint8_t i = led_min; i < led_max; i++) {
     RGB_MATRIX_TEST_LED_FLAGS();
